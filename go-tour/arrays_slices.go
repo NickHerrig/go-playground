@@ -5,7 +5,6 @@ import (
 )
 
 func main() {
-// All of this code shows experiments with arrays and slices. 
     my_array := [6]int{45,645,7,345,56,435}
     for _, value := range my_array {
         fmt.Println(value)
@@ -29,21 +28,4 @@ func main() {
     // copy slice src to slice dst.
     coppied := copy(my_slice_capacity, appended)
     fmt.Println(coppied)
-
-// All of this code shows experiments with Maps (Go's dictionary, hashtable, associate array)
-      // Example of a runtime error!
-//    var my_map map[string]int
-//    my_map["key"] = 11
-//    fmt.Println(my_map)
-
-    elements := make(map[string]string)
-    elements["H"] = "Hydrogen"
-    elements["B"] = "Boron"
-    elements["C"] = "Carbon"
-    elements["O"] = "Oxygen"
-    fmt.Println(elements)
-    for key, value := range elements {
-        fmt.Println("The element symbol:",key,"stands for", value)
-    }
-
 }
