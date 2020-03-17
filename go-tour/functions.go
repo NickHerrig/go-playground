@@ -4,20 +4,21 @@ import (
     "fmt"
 )
 
-func basal_metabolic_rate(age, height, weight float64, sex bool) float64 {
+func basal_metabolic_rate(age, height, weight float64, sex string) float64 {
     // weight in kg
     // height in cm
     // s = 5 for male and -161 for females
-
-    s := 5.0
-//    fmt.Println(reflect.TypeOf(s))
-//    fmt.Println(reflect.TypeOf(age))
-//    fmt.Println(reflect.TypeOf(height))
-//    fmt.Println(reflect.TypeOf(weight))
-    bmr := (10.0 * weight) + (6.25 * height) - (5.0 * age) + s
-    return bmr
+    if sex == "male"{
+        bmr := (10.0 * weight) + (6.25 * height) - (5.0 * age) + 5.0
+        return bmr
+    } else if sex == "female" {
+        bmr := (10.0 * weight) + (6.25 * height) - (5.0 * age) - 161.0
+        return bmr
+    }
+    return 0
 }
 
 func main() {
-    fmt.Println(basal_metabolic_rate(26, 167.64, 74.3891, true))
+    fmt.Println(basal_metabolic_rate(26, 167.64, 74.3891, "male"))
+    fmt.Println(basal_metabolic_rate(26, 167.64, 74.3891, "female"))
 }
