@@ -26,5 +26,6 @@ func main() {
             fmt.Fprint(os.Stderr, err)
             os.Exit(1)
         }
+        fmt.Println("The Response Code is:", resp.Status)
     }
 }
