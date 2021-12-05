@@ -1,0 +1,15 @@
+hello
+how are you
+
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+func main() {
+	input := bufio.NewScanner(os.Stdin)
+	fmt.Println(input.Text())
+}
