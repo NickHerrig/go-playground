@@ -1,0 +1,3 @@
+WOAH
+Am I really gonna get compiled?
+Directly into the go binary?!?!?!
