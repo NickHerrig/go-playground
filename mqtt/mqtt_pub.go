@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"time"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
@@ -20,18 +19,8 @@ func main() {
 		panic(token.Error())
 	}
 
-	// create and marshal topic message to json
-	type Message struct {
-		Battery float64
-	}
-	m := Message{0.85}
-	b, err := json.Marshal(m)
-	if err != nil {
-		panic(err)
-	}
-
 	for {
-		token = c.Publish("/ames/hq/ntf/d/pump/battery", 0, false, b)
+		token = c.Publish("autodoser/state", 0, false, "alive")
 		token.Wait()
 		time.Sleep(time.Second)
 	}
