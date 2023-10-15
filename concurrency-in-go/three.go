@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"runtime"
 	"sync"
+	"time"
 )
 
 func sameAddrSpace(){
@@ -65,11 +66,49 @@ func memAlloc(){
 
 }
 
+func runWg() {
+	var wg sync.WaitGroup
+
+	wg.Add(1)
+	go func () {
+		defer wg.Done()
+		fmt.Println("First goroutine sleeping")
+		time.Sleep(1)
+	}()
+
+	wg.Add(1)
+	go func () {
+		defer wg.Done()
+		fmt.Println("second goroutine sleeping")
+		time.Sleep(2)
+	}()
+	wg.Wait()
+	fmt.Print("All goroutines finished")
+
+}
+
+
+
 
 func main() {
 	//sameAddrSpace()
 	//tricky()
 	//fixed()
-	memAlloc()
+	//memAlloc()
+	//runWg()
+
+
+	hello := func (wg *sync.WaitGroup, id int) {
+		defer wg.Done()
+		fmt.Printf("Hello from %v\n", id)
+	}
+
+	var wg sync.WaitGroup
+	numRuns := 5
+	wg.Add(numRuns)
+	for i := 0; i < numRuns; i++ {
+		hello(&wg, i+1)
+	}
+	wg.Wait()
 
 }
